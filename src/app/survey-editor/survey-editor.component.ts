@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import * as SurveyEditor from 'surveyjs-editor';
 
 @Component({
@@ -11,6 +11,8 @@ export class SurveyEditorComponent implements OnInit {
   editor: SurveyEditor.SurveyEditor;
 
   @Input() json: any;
+  @Output() surveySaved: EventEmitter<Object> = new EventEmitter();
+
 
   ngOnInit() {
       const editorOptions = {showEmbededSurveyTab: true};
@@ -21,6 +23,7 @@ export class SurveyEditorComponent implements OnInit {
 
   saveMySurvey = () => {
       console.log(JSON.stringify(this.editor.text));
+      this.surveySaved.emit(this.editor.text);
   }
 
 }
