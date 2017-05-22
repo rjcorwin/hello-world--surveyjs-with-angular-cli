@@ -23,7 +23,7 @@ export class SurveyEditorComponent implements OnInit {
 
   saveMySurvey = () => {
       console.log(JSON.stringify(this.editor.text));
-      this.surveySaved.emit(this.editor.text);
+      this.surveySaved.emit(JSON.parse(this.editor.text));
   }
 
 }
